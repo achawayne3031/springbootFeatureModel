@@ -24,7 +24,6 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class RestExceptionHandler {
 
-
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiResponse> handleValidationErrors(MethodArgumentNotValidException ex) {
         List<String> errors = ex.getBindingResult().getFieldErrors()
@@ -35,17 +34,12 @@ public class RestExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity handleException(HttpMessageNotReadableException exception, HttpServletRequest request) {
         return new ResponseEntity<>(new ApiResponse<Object>(exception.getMessage(),false), HttpStatus.BAD_REQUEST);
-
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity handleHttpRequestMethodNotSuppoertedException(HttpRequestMethodNotSupportedException exception, HttpServletRequest request) {
         return new ResponseEntity<>(new ApiResponse<Object>(exception.getMessage(),false), HttpStatus.NOT_FOUND);
     }
-
-
-
-
 
 
     @ExceptionHandler(EmailAlreadyExistException.class)
@@ -61,9 +55,6 @@ public class RestExceptionHandler {
             NoHandlerFoundException ex, HttpServletRequest httpServletRequest) {
         return new ResponseEntity<>(new ApiResponse<>((ex.getMessage()),false), HttpStatus.NOT_FOUND);
     }
-
-
-
 
 
 

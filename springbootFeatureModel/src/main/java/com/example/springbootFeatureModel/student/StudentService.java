@@ -38,7 +38,6 @@ public class StudentService {
             if(studentByEmail.isPresent()){
                 throw new IllegalStateException("Email taken");
             }
-
             student.setEmail(email);
         }
 
